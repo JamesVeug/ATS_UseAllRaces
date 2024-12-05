@@ -24,21 +24,21 @@ namespace JLPlugin
 
         public static void Initialize(ConfigFile config)
         {
-            Plugin.Log.LogInfo($"Initialize");
+            // Plugin.Log.LogInfo($"Initialize");
             maxRaces = config.Bind("General", "Max Races", -1,
                 $"Maximum amount of races settlements can have. -1 is use all the races.");
 
             raceConfigs.Clear();
             foreach (RaceModel race in SO.Settings.Races)
             {
-                Plugin.Log.LogInfo($"Adding config for " + race.name);
+                // Plugin.Log.LogInfo($"Adding config for " + race.name);
                 GetConfig(config, race, State.Always);
             }
 
             config.ConfigReloaded += (sender, args) => { Plugin.Log.LogInfo($"Config reloaded " + sender + " " + args); };
             config.SettingChanged += (sender, args) =>
             {
-                Plugin.Log.LogInfo($"Setting changed " + sender + " " + args);
+                // Plugin.Log.LogInfo($"Setting changed " + sender + " " + args);
                 if (maxRaces.Equals(sender))
                 {
                     Plugin.Log.LogInfo($"Max Race Setting changed to " + maxRaces.Value);
@@ -46,7 +46,7 @@ namespace JLPlugin
                 }
                 else if (raceConfigs.Contains(sender as ConfigEntry<State>))
                 {
-                    Plugin.Log.LogInfo($"Race type changed");
+                    // Plugin.Log.LogInfo($"Race type changed");
                 }
             };
         }
@@ -67,7 +67,7 @@ namespace JLPlugin
                 }
             }
             
-            Plugin.Log.LogWarning($"{raceName} not found in configs. Using Optional instead.\n" + Environment.StackTrace);
+            // Plugin.Log.LogWarning($"{raceName} not found in configs. Using Optional instead.\n" + Environment.StackTrace);
             
             return State.Optional;
         }

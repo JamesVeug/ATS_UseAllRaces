@@ -87,7 +87,7 @@ public class Plugin : BaseUnityPlugin
     [HarmonyPostfix]
     private static void RacesHUD_SetUpSlots(RacesHUD __instance)
     {
-        Plugin.Log.LogInfo("RacesHUD.SetUpSlots");
+        // Plugin.Log.LogInfo("RacesHUD.SetUpSlots");
         RealignAlerts(__instance);
         OnRealignAlerts = () => RealignAlerts(__instance);
     }
@@ -96,13 +96,13 @@ public class Plugin : BaseUnityPlugin
     [HarmonyPostfix]
     private static void RacesHUDSlot_Enable(RacesHUD __instance)
     {
-        Plugin.Log.LogInfo("RacesHUDSlot_Enable");
+        // Plugin.Log.LogInfo("RacesHUDSlot_Enable");
         OnRealignAlerts?.Invoke();
     }
 
     private static void RealignAlerts(RacesHUD hud)
     {
-        Plugin.Log.LogInfo("RealignAlerts");
+        // Plugin.Log.LogInfo("RealignAlerts");
         RacesHUDSlot lastSlotActive = null;
         for (int i = 0; i < hud.slots.Length; i++)
         {
@@ -115,14 +115,14 @@ public class Plugin : BaseUnityPlugin
         
         if (lastSlotActive == null)
         {
-            Log.LogWarning("No active slot found");
+            // Log.LogWarning("No active slot found");
             return;
         }
         
         MonitorsHUD monitorsHUD = GetMonitorsHUD();
         if (monitorsHUD == null)
         {
-            Log.LogWarning("MonitorsHUD not found");
+            // Log.LogWarning("MonitorsHUD not found");
             return;
         }
 
@@ -134,14 +134,14 @@ public class Plugin : BaseUnityPlugin
         Vector3 position = monitorsHUD.transform.localPosition;
         position.y = lastSlotActive.transform.localPosition.y + lastSlotActive.GetRectSize().y - 20;
         
-        if(position.y < DefaultAlertsPosition.Value.y)
+        if(position.y > DefaultAlertsPosition.Value.y)
         {
-            Log.LogWarning("Alerts position is too low");
+            // Log.LogWarning("Alerts position is too low");
             return;
         }
         
         monitorsHUD.transform.localPosition = position;
-        Log.LogInfo("MonitorsHUD position set to " + position);
+        // Log.LogInfo("MonitorsHUD position set to " + position);
     }
 
     private static MonitorsHUD m_MonitorsHUD = null;
@@ -177,10 +177,10 @@ public class Plugin : BaseUnityPlugin
     [HarmonyPrefix]
     private static bool CaravanGenerator_DefineNewSettlementRaces(CaravanGenerator __instance, ref List<string> __result)
     {
-        Plugin.Log.LogInfo("CaravanGenerator.GetRandomRaces");
+        // Plugin.Log.LogInfo("CaravanGenerator.GetRandomRaces");
         if (!InitializedConfigs)
         {
-            Plugin.Log.LogWarning("Not initialized");
+            // Plugin.Log.LogWarning("Not initialized");
             return true;
         }
         // return (from r in Serviceable.Settings.Races.ShuffleToNew(rng).Where(Serviceable.MetaConditionsService.IsUnlocked).Take(Serviceable.Settings.gameplayRaces)
