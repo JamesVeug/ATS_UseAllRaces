@@ -1,0 +1,8 @@
+﻿{
+  "name": "UseAllRaces",
+  "version_number": "1.0.0",
+  "website_url": "",
+  "description": "Use all races in every run instead of just 3",
+  "dependencies": ["BepInEx-BepInExPack-5.4.2100"]
+}
+
