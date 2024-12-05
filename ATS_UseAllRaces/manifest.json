@@ -1,7 +1,7 @@
 ﻿{
   "name": "UseAllRaces",
-  "version_number": "1.0.0",
-  "website_url": "",
+  "version_number": "1.1.0",
+  "website_url": "https://github.com/JamesVeug/ATS_UseAllRaces",
   "description": "Use all races in every run instead of just 3",
   "dependencies": ["BepInEx-BepInExPack-5.4.2100"]
 }
